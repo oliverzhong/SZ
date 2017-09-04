@@ -1,0 +1,5 @@
+  if(navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion .split(";")[1].replace(/[ ]/g,"")=="MSIE6.0" || navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion .split(";")[1].replace(/[ ]/g,"")=="MSIE7.0" || navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion .split(";")[1].replace(/[ ]/g,"")=="MSIE8.0" || navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion .split(";")[1].replace(/[ ]/g,"")=="MSIE9.0"){
+  if(confirm("本站使用了高级语法，您当前使用的低级浏览器不支持，请下载IE9以上版本")){
+         location.href='http://pdds.ucweb.com/download/newest/UCBrowser/zh-cn/101/999/web_banner';
+  }
+  }
