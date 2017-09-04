@@ -1,0 +1,10 @@
+JavaScript 获取当前时间戳：
+第一种方法：
+var timestamp = Date.parse(new Date());
+结果：1280977330000
+第二种方法：
+var timestamp = (new Date()).valueOf();
+结果：1280977330748
+第三种方法：
+var timestamp=new Date().getTime()；
+结果：1280977330748
