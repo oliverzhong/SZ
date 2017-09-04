@@ -1,0 +1,6 @@
+jquery 版本2.0.3 的源码解读笔记
+
+1、ie9以下出现window.a=='undefined'判断不出来的问题
+     window.a=='undefined' ； //ie6、7、8、9下出现问题
+    typeof window.a=='undefined'；//全兼容
+2、obj.trim();去前后空格 //不支持ie6、7、8
