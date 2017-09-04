@@ -1,0 +1,19 @@
+ $("body").mouseover(
+ function(event){
+  event = event || window.event; 
+  var x = event.offsetX || event.originalEvent.layerX;
+  var y = event.offsetY || event.originalEvent.layerY;
+ }
+ );
+
+
+function test(event) {
+ event = event || window.event;
+ var x = event.offsetX || event.layerX;
+ var y = event.offsetY || event.layerY;
+
+var o={};
+o.x=x;
+o.y=y;
+return o;
+ }
