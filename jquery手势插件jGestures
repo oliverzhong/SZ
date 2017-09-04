@@ -1,0 +1,135 @@
+手机开发中，除了我们平时用的jquery基本事件之外，还有很多手势，今天介绍一款jquery手势插件jGestures，地址是：http://jgestures.codeplex.com/
+这个插件的强大之处在于它可以监听以下事件'pinch'(缩放手势), 'rotate'(旋转手势), 'swipe'(滑动手势), 'tap'(轻触) 以及 'orientationchange'(改变设备方向)。等等，有了这个插件，手机web开发就更加方便了。
+orientationchange 代表设备顺时针或者逆时针旋转.此事件可以被设备触发,可能使用的是重力传感器.
+pinch 缩放手势(两个手指在屏幕上的相对运动)
+rotate 旋转手势(两个手指顺时针或者逆时针旋转)
+swipemove 在正在滑动时触发(在设备屏幕上移动手指,比如:拖动)
+swipeone 单点滑动手势,滑动完成后触发(一个手指在屏幕上移动)
+swipetwo 两点滑动(两个手指在屏幕上方向一致的滑动)
+swipethree 三点滑动(三个手指在屏幕上方向一致的滑动)
+swipefour 四点滑动(四个手指在屏幕上方向一致的滑动)
+swipeup 向上滑动,在严格的向上滑动手势完成后触发
+swiperightup 向右上角滑动,在向右且向上的滑动手势完成后触发
+swiperight 向右滑动,在严格的向右滑动手势完成后触发
+swiperightdown 向右下角滑动,在向右且向下的滑动手势完成后触发
+swipedown 向下滑动,在严格的向下滑动手势完成后触发
+swipeleftdown 向左下角滑动,在向左且向下的滑动手势完成后触发
+swipeleft 向左滑动,在严格的向左滑动手势完成后触发
+swipeleftup 向左上角滑动,在向左且向上的滑动手势完成后触发
+tapone 在单个手指轻点的手势后触发
+taptwo 在两个手指一起轻点的手势后触发
+tapthree 在三个手指一起轻点的手势后触发
+pinchopen 撑开手势,当两个手指撑大并离开设备时触发.
+pinchclose 捏紧手势,当两个手指捏紧并离开设备时触发.
+rotatecw 两个手指顺时针旋转并且离开屏幕时触发(two fingers rotating clockwise)
+rotateccw 两个手指逆时针旋转并且离开屏幕时触发 (two fingers rotating counterclockwise)
+shake 当检测到设备正在摇晃时触发
+shakefrontback 当检测到摇晃动作，且可以被解读为前后移动之时触发.
+shakeleftright 当检测到摇晃动作，且可以被解读为左右移动之时触发.
+shakeupdown 当检测到摇晃动作，且可以被解读为上下移动之时触发.
+关于swipe，我上一篇文章已经介绍过了，http://www.haorooms.com/post/jquery_scroll_upanddown
+当页面有滚动条的时候，swipe的up,down，left,right可能会不触发！事件会被滚动事件覆盖掉！
+ 
+事件用法
+<script>
+jQuery(document).ready(function () {
+             jQuery(window).bind('shakeupdown',function(event_,data_){
+                alert('shake: '+ data_.description)
+            })
+    })
+</script>
+官方案例如下：
+ <script>
+function log(event_, obj) {
+// ignore bubbled handlers
+//        if ( obj.originalEvent.currentTarget !== obj.originalEvent.target ) { return; }
+    obj.originalEvent.preventDefault();
+    jQuery('#logger')
+        .find('li')
+            .slice(1,jQuery('#logger').find('li').size()-8)
+                .animate({'opacity':'0', 'height':'0'},function(){jQuery(this).remove()})
+            .end()
+        .end()
+        .append('<li><b>'+jQuery(obj.originalEvent.currentTarget).attr('id')+'</b>: '+obj.description+ ' : '+obj.type +'</li>')
+ 
+}
+ 
+function manipulate(event_, obj) {
+// ignore bubbled handlers
+//        if ( obj.originalEvent.currentTarget !== obj.originalEvent.target ) { return; }
+    event_.preventDefault();
+    obj.originalEvent.preventDefault();
+    log(event_, obj)
+ 
+    var _a = obj.description.split(':');
+ 
+    jQuery(obj.originalEvent.currentTarget).css('zIndex','1000')
+    switch(_a[0]) {
+        case 'pinch':
+            //jQuery(obj.originalEvent.currentTarget).css('-webkit-transform','scale('+ ( obj.direction * obj.delta[0].moved ) +')');
+        break;
+        case  'rotate':
+             //jQuery(obj.originalEvent.currentTarget).css('-webkit-transform','rotate('+ (  obj.delta[0].moved ) +'deg)');
+        break;
+ 
+        case  'swipemove':
+            if(_a[1] != 1) {break;}
+            jQuery(obj.originalEvent.currentTarget).css('-webkit-transition','');
+             jQuery(obj.originalEvent.currentTarget).css('left', parseInt(jQuery(obj.originalEvent.currentTarget).css('left')) + obj.delta[0].startX );
+            jQuery(obj.originalEvent.currentTarget).css('top', parseInt(jQuery(obj.originalEvent.currentTarget).css('top')) + obj.delta[0].startY );
+//            jQuery(obj.originalEvent.currentTarget).data('moving',true)
+        break;
+ 
+        case 'swipe' :
+//            if(_a[1] != 1 || jQuery(obj.originalEvent.currentTarget).data('moving') } {break;}
+             jQuery(obj.originalEvent.currentTarget).css('-webkit-transition','all 1s ease-out').css('left', parseInt(jQuery(obj.originalEvent.currentTarget).css('left')) + obj.delta[0].startX );
+            jQuery(obj.originalEvent.currentTarget).css('-webkit-transition','all 1s ease-out').css('top', parseInt(jQuery(obj.originalEvent.currentTarget).css('top')) + obj.delta[0].startY );
+        break;
+      }
+      jQuery(obj.originalEvent.currentTarget).css('zIndex','')
+}
+ 
+    function BlockMove(event) {
+        // Tell Safari not to move the window.
+        event.preventDefault() ;
+    }
+ 
+ 
+jQuery(document).ready(function() {
+ 
+ 
+    jQuery('#tap').bind('tapone',log);
+    jQuery('#tap').bind('taptwo',log);
+    jQuery('#tap').bind('tapthree',log);
+    jQuery('#tap').bind('tapfour',log);
+ 
+ 
+    jQuery('#swipe').bind('swipeone',log);
+    jQuery('#swipe').bind('swipetwo',log);
+    jQuery('#swipe').bind('swipethree',log);
+    jQuery('#swipe').bind('swipefour',log);
+ 
+    jQuery('#swipe').bind('swipeup',log);
+    jQuery('#swipe').bind('swiperightup',log);
+    jQuery('#swipe').bind('swiperight',log);
+    jQuery('#swipe').bind('swiperightdown',log);
+ 
+    jQuery('#swipe').bind('swipedown',log);
+    jQuery('#swipe').bind('swipeleftdown',log);
+    jQuery('#swipe').bind('swipeleft',log);
+    jQuery('#swipe').bind('swipeleftup',log);
+ 
+    jQuery('#change').bind('pinchopen',manipulate);
+    jQuery('#change').bind('pinchclose',manipulate);
+    jQuery('#change').bind('rotatecw',manipulate);
+    jQuery('#change').bind('rotateccw',manipulate);
+     jQuery('#change').bind('swipeone',manipulate);
+ 
+    jQuery('#livechange').bind('swipeone',manipulate);
+    jQuery('#livechange').bind('swipemove',manipulate);
+    jQuery('#livechange').bind('pinch',manipulate);
+    jQuery('#livechange').bind('rotate',manipulate);
+ 
+})
+ </script>
+ 
