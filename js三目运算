@@ -1,0 +1,7 @@
+三元预算表达式： Condition ? doSomething : doOtherThing ;
+
+1. 同所有语言的三元运算一样，Javascript的三元运算同样支持Condition为Boolean类型的情况。当Condition为True的时候，执行doSomething，为False的时候执行doOtherThing。
+
+2. 支持Condition为字符串。当Condition=“”的时候，等同于False，执行doOtherThing;当Condition!=“”的时候，等同于True，执行doSomething。
+
+3. 支持Condition为对象。当Condition=undefined或者null的时候，等同于False，执行doOtherThing;当Condition!=undefined和null的时候，等同于True，执行doSomething。
