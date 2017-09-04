@@ -1,0 +1,73 @@
+script的defer和async
+
+我们常用的script标签，有两个和性能、js文件下载执行相关的属性：defer和async
+defer的含义【摘自https://developer.mozilla.org/En/HTML/Element/Script】
+This Boolean attribute is set to indicate to a browser that the script is meant to be executed after the document has been parsed.
+async的含义【摘自https://developer.mozilla.org/En/HTML/Element/Script】
+Set this Boolean attribute to indicate that the browser should, if possible, execute the script asynchronously.
+ 
+Defer
+对于defer，我们可以先思考一个情况。一个页面如果有N个外链的脚本，放在head中，那么，当加载脚本时会阻塞页面的渲染，也就是常说的空白。在简单的开发环境中，我们可能只要将源代码中的外链脚本位置换一下就ok了。可是面对越来越复杂的开发环境，前端同事如果要后台开发同事调整一下脚本的位置，可能会花费大量的沟通成本和开发成本。我在去年的一个项目中就遇到过此类情况，当然也很感谢当时的后台开发同事的配合，他们都辛辛苦苦的调整了脚本的位置，解决了空白的问题。
+那么可以让这个成本降到最低吗？那么我们可以使用defer这个属性。
+如果一个script加了defer属性，即使放在head里面，它也会在html页面解析完毕之后再去执行，也就是类似于把这个script放在了页面底部。
+关于defer有两个demo:
+  ● without defer
+  ● with defer
+简单介绍一下这个demo，一共引用了3个js和1个css，为了能更好的展示defer的效果，第二个js-2.php是延迟了3秒返回的。1.js会在页面中生成一个值为1的input框，2.php会生成值为2的input框，3.js会生成值为3的input框。一方面我们需要观察页面渲染的时间，另一方面我们也要看一下js是否顺序执行了。
+下图是without_defer.html的效果，从瀑布图可以看出，domready和onload的时间都在6s左右，因为需要等待2.php的返回才能渲染页面。如果你访问上面的例子，可以看出，页面要等6s的时间才会呈现出来，6s之前都是空白。
+[图片]
+那么如果我们为每个js都加上defer属性，请看下面两张图
+第一张是在加载过程中截取的，可以看到一旦有了defer属性，虽然有资源2.php需要等待，但是仍然会继续渲染页面，加载后续的js和css等资源文件。对比上面的情况，可以看到domready的时间明显提前，如果你访问demo地址，会发现页面会照常渲染出来，只不过2.php里面的内容会延迟执行。
+[图片]
+[图片]
+从上面的对比可以看出，对于defer，我们可以认为是将外链的js放在了页面底部。js的加载不会阻塞页面的渲染和资源的加载。不过defer会按照原本的js的顺序执行，所以如果前后有依赖关系的js可以放心使用。
+ 
+Async
+对于async，这个是html5中新增的属性，它的作用是能够异步的加载和执行脚本，不因为加载脚本而阻塞页面的加载。一旦加载到就会立刻执行。那async和defer有什么不同之处呢？我们还是先看async的两个demo
+  ● without async
+  ● with async
+demo的效果和上面描述的一样。
+下图是without async的瀑布图，和没有defer的情况是一样的。domready和load的时间都因为一个js的延迟而延迟了。
+[图片]
+我们再看一下有async属性的情况，和defer一样，会等待的资源不会阻塞其余资源的加载，也不会影响页面的加载。但是有一点需要注意下，在有async的情况下，js一旦下载好了就会执行，所以很有可能不是按照原本的顺序来执行的。如果js前后有依赖性，用async，就很有可能出错。
+[图片]
+[图片]
+ 
+Difference
+这篇文章中总结了defer和async的相同点和区别。
+Both async and defer scripts begin to download immediately without pausing the parser and both support an optional onload handler to address the common need to perform initialization which depends on the script. The difference between async and defer centers around when the script is executed. Each async script executes at the first opportunity after it is finished downloading and before the window’s load event. This means it’s possible (and likely) that async scripts are not executed in the order in which they occur in the page. The defer scripts, on the other hand, are guaranteed to be executed in the order they occur in the page. That execution starts after parsing is completely finished, but before the document’s DOMContentLoaded event.
+ 
+Wrapping it up
+在上述的基础上，我根据实际使用的情况总结了一下defer和async的特征。
+相同点：
+  ● 加载文件时不阻塞页面渲染
+  ● 对于inline的script无效
+  ● 使用这两个属性的脚本中不能调用document.write方法
+  ● 有脚本的onload的事件回调
+区别点：
+  ● html的版本html4.0中定义了defer；html5.0中定义了async
+  ● 浏览器
+FeatureChromeFirefox (Gecko)Internet ExplorerOperaSafariBasic support1.01.0 (1.7 or earlier)(Supported)(Supported)(Supported)async attribute(Supported)3.6 (1.9.2)10—(Supported)defer attribute(Supported)3.5 (1.9.1)4—(Supported)
+  ● 执行时刻
+每一个async属性的脚本都在它下载结束之后立刻执行，同时会在window的load事件之前执行。所以就有可能出现脚本执行顺序被打乱的情况；每一个defer属性的脚本都是在页面解析完毕之后，按照原本的顺序执行，同时会在document的DOMContentLoaded之前执行。
+摘自【http://dev.w3.org/html5/spec/Overview.html#attr-script-async】
+There are three possible modes that can be selected using these attributes. If the async attribute is present, then the script will be executed asynchronously, as soon as it is available. If the async attribute is not present but the defer attribute is present, then the script is executed when the page has finished parsing. If neither attribute is present, then the script is fetched and executed immediately, before the user agent continues parsing the page.
+简单的来说，使用这两个属性会有三种可能的情况
+  ● 如果async为true，那么脚本在下载完成后异步执行。
+  ● 如果async为false，defer为true，那么脚本会在页面解析完毕之后执行。
+  ● 如果async和defer都为false，那么脚本会在页面解析中，停止页面解析，立刻下载并且执行，
+最后给一点个人的建议，无论使用defer还是async属性，都需要首先将页面中的js文件进行整理，哪些文件之间有依赖性，哪些文件可以延迟加载等等，做好js代码的合并和拆分，然后再根据页面需要使用这两个属性。
+本文another链接：http://feifeipan.sinaapp.com/?p=51
+=====华丽丽的分割线=========
+对于znxds提出的IE下的工作，我针对FF和IE6、IE7、IE8下面做了比较。
+demo
+[图片]
+Firefox中，inline的defer是没有效果的；outer的defer会在页面最底部执行。
+ 
+[图片]
+IE8.0中，inline和outer的defer是起作用的，都会延迟到页面底部，排在其他非defer的js后面执行
+[图片]
+IE7.0的情况，和IE8.0一致。
+[图片]
+IE6.0中，关于defer inline js，要区分是在head中还是在body中。在head中defer inline js会在遇到body之后优先执行，而在body中的defer inline js会在body结束之前执行；关于defer outer js, 依然是在页面最后执行。
+所以可以看出，defer的outer js在各种浏览器中表现一致；defer的inline js在IE6中比较特殊，head和body中的顺序不一样，IE7和IE8会延迟到页面底部执行，在Firefox中无效。
