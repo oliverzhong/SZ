@@ -1,0 +1,948 @@
+1.文本框焦点问题  
+onBlur:当失去输入焦点后产生该事件  
+onFocus:当输入获得焦点后，产生该文件  
+Onchange:当文字值改变时，产生该事件  
+Onselect:当文字加亮后，产生该文件  
+  
+<input type="text" value="mm" onfocus="if(value=='mm) {value=''}" onblur="if  
+(value=='') {value='mm'}">点击时文字消失，失去焦点时文字再出现  
+  
+  
+2.网页按钮的特殊颜色  
+<input type=button name="Submit1" value="郭强" size=10 class="s02"  
+  
+style="  
+  
+3.鼠标移入移出时颜色变化  
+<input type="submit" value="找吧" name="B1" onMouseOut=this.style.color="blue"  
+  
+onMouseOver=this.style.color="red"  class="button">  
+  
+4.平面按钮  
+<input type=submit value=订阅 style="border:1px solid :#666666; height:17px; width:25pt; font-size:9pt;  
+  
+color:#666666" name="submit">  
+  
+5.按钮颜色变化  
+<input type=text name="nick"  style="border:1px solid #666666;  font-size:9pt;  height:17px;  
+  
+color:#ff6600" size="15" maxlength="16">  
+  
+6.平面输入框  
+<input type="text" name="T1" size="20" style="border-style: solid; border-width: 1">  
+  
+7.使窗口变成指定的大小  
+<script>  
+window.resizeTo(300,283);  
+</script>  
+  
+8.使文字上下滚动  
+<marquee direction=up scrollamount=1 scrolldelay=100 onmouseover='this.stop()' onmouseout='this.start()'  
+  
+height=60>  
+<!-- head_scrolltext -->  
+<tr>  
+<td>  
+共和国  
+</table>        <!-- end head_scrolltext -->  
+</marquee>  
+  
+9.状态栏显示该页状态  
+<base onmouseover="window.status='网站建设 http://www.webmake.cn/' ;return true">  
+  
+10.可以点击文字实现radio选项的选定  
+<br>  
+    <input type="radio" name="regtype" value="A03" id="A03">  
+<label for="A03"> 情侣 : 一次注册两个帐户</label> <br>  
+  
+11.可以在文字域的font写onclick事件  
+  
+12.打印</a>打印网页  
+<a href='javascript:window.print ()'>  
+  
+13.线型输入框  
+<input type="text" name="key"  size="12" value="关键字" onFocus=this.select() onMouseOver=this.focus()  
+  
+class="line">  
+  
+14.显示文档最后修改日期  
+<script language=javascript>  
+function hi(str)  
+{  
+document.write(document.lastModified)  
+  
+alert("hi"+str+"!")  
+}  
+</script>  
+  
+15.可以在鼠标移到文字上时就触发事件  
+<html>  
+<head>  
+<script language="LiveScript">  
+<!-- Hiding  
+     function hello() {  
+       alert("哈罗!");  
+     }  
+</script>  
+</head>  
+<body>  
+[url=" onMouseOver=]link[/url]  
+</body>  
+</html>  
+  
+16.可以根据网页上的选项来确定页面颜色  
+<HTML>  
+<HEAD>  
+<TITLE>background.html</TITLE>  
+</HEAD>  
+<SCRIPT>  
+<!--  
+  
+function bgChange(selObj) {  
+newColor = selObj.options[selObj.selectedIndex].text;  
+document.bgColor = newColor;  
+selObj.selectedIndex = -1;  
+}  
+  
+//-->  
+</SCRIPT>  
+<BODY STYLE="font-family:Arial">  
+<B>Changing Background Colors</B>  
+<BR>  
+<FORM>  
+  <SELECT SIZE="8" onChange="bgChange(this);">  
+  <OPTION>Red  
+  <OPTION>Orange  
+  <OPTION>Yellow  
+  <OPTION>Green  
+  <OPTION>Blue  
+  <OPTION>Indigo  
+  <OPTION>Violet  
+  <OPTION>White  
+<OPTION>pink  
+  </SELECT>  
+</FORM>  
+</BODY>  
+</HTML>  
+  
+17.将按钮的特征改变  
+<style type="text/css">  
+<!--  
+.style1 { font-size: 12px; background: #CCCCFF; border-width: thin thin thin thin; border-color: #CCCCFF  
+  
+#CCCCCC #CCCCCC #CCCCFF}  
+.style2 { font-size: 12px; font-weight: bold; background: #CCFFCC; border-width: thin medium medium thin;  
+  
+border-color: #CCFF99 #999999 #999999 #CCFF99}  
+-->  
+</style>  
+　　本例按钮的代码如下：  
+<input type="submit" name="Submit" value="提 交" onmouseover="this.className='style2'"  
+  
+onmouseout="this.className='style1'" class="style1">  
+  
+18.改变按钮的图片.  
+<style type="text/css">  
+<!--  
+.style3 { font-size: 12px; background: url(image/buttonbg1.gif); border: 0px; width: 60px; height: 22px}  
+.style4 { font-size: 12px; font-weight: bold; background: url(image/buttonbg2.gif); border: 0px 0; width:  
+  
+60px; height: 22px}  
+-->  
+</style>  
+　　本例的按钮代码如下：  
+<input type="submit" name="Submit2" value="提 交" onmouseover="this.className='style4'"  
+  
+onmouseout="this.className='style3'" class="style3">  
+  
+19.打印页面  
+<a class="content" href="javascript:doPrint();">打印本稿</a>
+  
+  
+20.可以直接写html语言  
+document.write("");  
+  
+21.改变下拉框的颜色  
+<select name="classid"  
+  
+onChange="changelocation(document.myform.classid.options[document.myform.classid.selectedIndex].value)" 
+  
+size="1" style="color:#008080;font-size: 9pt">  
+  
+22.转至目标URL  
+window.location="http://guoguo"  
+  
+23.传递该object的form  
+UpdateSN('guoqiang99267',this.form)  
+function UpdateSN(strValue,strForm)  
+{  
+  strForm.SignInName.value = strValue;  
+  return false;  
+}  
+  
+24.文字标签  
+<label for="AltName4"><input name="AltName" type="RADIO" tabindex="931"  id="AltName4"  
+  
+>guoqiang99859</label>  
+  
+25.layer2为组件的ID，可以控制组件是否可见  
+document.all.item('Layer2').style.display = "block";  
+document.all.item('Layer2').style.display = "none";//  
+  
+26.将页面加入favorite中  
+<script language=javascript>  
+<!--  
+function Addme(){  
+url = "http://your.site.address"; //你自己的主页地址  
+title = "Your Site Name"; //你自己的主页名称  
+window.external.AddFavorite(url,title);  
+-->  
+</script>//  
+  
+27.过10秒自动关闭页面  
+< script language="JavaScript" >  
+function closeit() {  
+setTimeout("self.close()"，10000)  
+}  
+< /script >  
+  
+28.可以比较字符的大小  
+char=post.charAt(i);  
+if(!('0'<=char&&char<='9'))  
+  
+29.将字符转化为数字  
+month = parseInt(char)  
+  
+30.点击value非空的选项时转向指定连接  
+<select onchange='if(this.value!="")window.open(this.value)' class="textinput">  
+    <option selected>主办单位</option>  
+    <option>-----------------</option>  
+    <option value="http://www.bjd.com.cn/">北京日报</option>  
+    <option value="http://www.ben.com.cn/">北京晚报</option>  
+</select>  
+  
+31.改变背景颜色  
+<td width=* class="dp" bgColor=#FAFBFC onmouseover="this.bgColor='#FFFFFF';"  
+  
+onmouseout="this.bgColor='#FAFBFC';">  
+  
+32.改变文字输入框的背景颜色  
+<style>  
+.input2 {background-image: url('../images/inputbg.gif');   font-size: 12px;  
+  
+#D0DABB;border-top-width:1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px}  
+</style>  
+<input name=content type=text size="47" class="input2" maxlength="50">  
+  
+33.改变水平线的特征  
+<hr size="0" noshade color="#C0C0C0">  
+  
+34.传递参数的方式  
+8  
+  
+35.页内跳转  
+1  
+2  
+3  
+4  
+5  
+6  
+7  
+<a name="1">dfdf</a>  
+<a name="2">dfdf</a>//  
+  
+36.两个按键一起按下  
+if(event.ctrlKey && window.event.keyCode==13)//  
+  
+37.刷新页面  
+javascript:this.location.reload()//  
+  
+38.将网页的按钮使能  
+<SCRIPT LANGUAGE="JavaScript">  
+function haha()  
+{  
+for(var i=0;i<document.form1.elements.length;i++)  
+{  
+  if(document.form1.elements[i].name.indexOf("bb")!=-1)  
+   document.form1.elements[i].disabled=!document.form1.elements[i].disabled;  
+}  
+}  
+</SCRIPT>  
+<BODY><form name=form1>  
+<INPUT TYPE="button" NAME="aa "  value=cindy onclick=haha()>  
+<INPUT TYPE="button" NAME="bb " value=guoguo>  
+<INPUT TYPE="button" NAME="bb " value=guoguo>  
+  
+39.文字移动  
+<marquee scrollamount=3 onmouseover=this.stop(); onmouseout=this.start();>  
+  
+40.双击网页自动跑  
+<SCRIPT LANGUAGE="JavaScript">  
+var currentpos,timer;  
+function initialize()  
+{  
+timer=setInterval("scrollwindow()",1);  
+}  
+function sc()  
+{  
+clearInterval(timer);  
+}  
+function scrollwindow()  
+{  
+currentpos=document.body.scrollTop;  
+window.scroll(0,++currentpos);  
+if (currentpos != document.body.scrollTop)  
+  sc();  
+}  
+document.onmousedown=sc  
+document.ondblclick=initialize  
+</SCRIPT>//  
+  
+41.后退  
+<INPUT TYPE="button" onclick=window.history.back() value=back>  
+  
+42.前进  
+<INPUT TYPE="button" onclick=window.history.forward() value=forward>  
+  
+43.刷新  
+<INPUT TYPE="button" onclick=document.location.reload() value=reload>  
+  
+44.转向指定网页  
+document.location="http://ww"或者document.location.assign("http://guoguo.com")  
+  
+45.在网页上显示实时时间  
+<SCRIPT LANGUAGE="JavaScript">  
+var clock_id;  
+window.onload=function()  
+{  
+clock_id=setInterval("document.form1.txtclock.value=(new Date);",1000)  
+}  
+</SCRIPT>//  
+  
+46.可以下载文件  
+document.location.href="目标文件"//  
+  
+47.连接数据库  
+import java.sql.*;  
+String myDBDriver="sun.jdbc.odbc.JdbcOdbcDriver";  
+Class.forName(myDBDriver);  
+Connection conn=DriverManager.getConnection("jdbc:odbc:firm","username","password");  
+Statement stmt=conn.createStatement();  
+ResultSet rs=stmt.executeQuery(sql);  
+rs.getString("column1");//  
+  
+48.可以直接在页面“div”内写下所需内容  
+<INPUT TYPE="button" onclick="a1.innerHTML='<font color=red>*</font>'">  
+<a class="content" href="javascript:doPrint();">打印本稿</a>
+
+
+20.可以直接写html语言 
+document.write(""); 
+
+21.改变下拉框的颜色 
+<select name="classid" 
+
+onChange="changelocation(document.myform.classid.options[document.myform.classid.selectedIndex].value)" 
+
+size="1" style="color:#008080;font-size: 9pt"> 
+
+22.转至目标URL 
+window.location="http://guoguo" 
+
+23.传递该object的form 
+UpdateSN('guoqiang99267',this.form) 
+function UpdateSN(strValue,strForm) 
+{ 
+  strForm.SignInName.value = strValue; 
+  return false; 
+} 
+
+24.文字标签 
+<label for="AltName4"><input name="AltName" type="RADIO" tabindex="931"  id="AltName4" 
+
+>guoqiang99859</label> 
+
+25.layer2为组件的ID，可以控制组件是否可见 
+document.all.item('Layer2').style.display = "block"; 
+document.all.item('Layer2').style.display = "none";// 
+
+26.将页面加入favorite中 
+<script language=javascript> 
+<!-- 
+function Addme(){ 
+url = "http://your.site.address"; //你自己的主页地址 
+title = "Your Site Name"; //你自己的主页名称 
+window.external.AddFavorite(url,title); 
+--> 
+</script>// 
+
+27.过10秒自动关闭页面 
+< script language="JavaScript" > 
+function closeit() { 
+setTimeout("self.close()"，10000) 
+} 
+< /script > 
+
+28.可以比较字符的大小 
+char=post.charAt(i); 
+if(!('0'<=char&&char<='9')) 
+
+29.将字符转化为数字 
+month = parseInt(char) 
+
+30.点击value非空的选项时转向指定连接 
+<select onchange='if(this.value!="")window.open(this.value)' class="textinput"> 
+    <option selected>主办单位</option> 
+    <option>-----------------</option> 
+    <option value="http://www.bjd.com.cn/">北京日报</option> 
+    <option value="http://www.ben.com.cn/">北京晚报</option> 
+</select> 
+
+31.改变背景颜色 
+<td width=* class="dp" bgColor=#FAFBFC onmouseover="this.bgColor='#FFFFFF';" 
+
+onmouseout="this.bgColor='#FAFBFC';"> 
+
+32.改变文字输入框的背景颜色 
+<style> 
+.input2 {background-image: url('../images/inputbg.gif');   font-size: 12px; 
+
+#D0DABB;border-top-width:1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px} 
+</style> 
+<input name=content type=text size="47" class="input2" maxlength="50"> 
+
+33.改变水平线的特征 
+<hr size="0" noshade color="#C0C0C0"> 
+
+34.传递参数的方式 
+8 
+
+35.页内跳转 
+1 
+2 
+3 
+4 
+5 
+6 
+7 
+<a name="1">dfdf</a> 
+<a name="2">dfdf</a>// 
+
+36.两个按键一起按下 
+if(event.ctrlKey && window.event.keyCode==13)// 
+
+37.刷新页面 
+javascript:this.location.reload()// 
+
+38.将网页的按钮使能 
+<SCRIPT LANGUAGE="JavaScript"> 
+function haha() 
+{ 
+for(var i=0;i<document.form1.elements.length;i++) 
+{ 
+  if(document.form1.elements[i].name.indexOf("bb")!=-1) 
+   document.form1.elements[i].disabled=!document.form1.elements[i].disabled; 
+} 
+} 
+</SCRIPT> 
+<BODY><form name=form1> 
+<INPUT TYPE="button" NAME="aa "  value=cindy onclick=haha()> 
+<INPUT TYPE="button" NAME="bb " value=guoguo> 
+<INPUT TYPE="button" NAME="bb " value=guoguo> 
+
+39.文字移动 
+<marquee scrollamount=3 onmouseover=this.stop(); onmouseout=this.start();> 
+
+40.双击网页自动跑 
+<SCRIPT LANGUAGE="JavaScript"> 
+var currentpos,timer; 
+function initialize() 
+{ 
+timer=setInterval("scrollwindow()",1); 
+} 
+function sc() 
+{ 
+clearInterval(timer); 
+} 
+function scrollwindow() 
+{ 
+currentpos=document.body.scrollTop; 
+window.scroll(0,++currentpos); 
+if (currentpos != document.body.scrollTop) 
+  sc(); 
+} 
+document.onmousedown=sc 
+document.ondblclick=initialize 
+</SCRIPT>// 
+
+41.后退 
+<INPUT TYPE="button" onclick=window.history.back() value=back> 
+
+42.前进 
+<INPUT TYPE="button" onclick=window.history.forward() value=forward> 
+
+43.刷新 
+<INPUT TYPE="button" onclick=document.location.reload() value=reload> 
+
+44.转向指定网页 
+document.location="http://ww"或者document.location.assign("http://guoguo.com") 
+
+45.在网页上显示实时时间 
+<SCRIPT LANGUAGE="JavaScript"> 
+var clock_id; 
+window.onload=function() 
+{ 
+clock_id=setInterval("document.form1.txtclock.value=(new Date);",1000) 
+} 
+</SCRIPT>// 
+
+46.可以下载文件 
+document.location.href="目标文件"// 
+
+47.连接数据库 
+import java.sql.*; 
+String myDBDriver="sun.jdbc.odbc.JdbcOdbcDriver"; 
+Class.forName(myDBDriver); 
+Connection conn=DriverManager.getConnection("jdbc:odbc:firm","username","password"); 
+Statement stmt=conn.createStatement(); 
+ResultSet rs=stmt.executeQuery(sql); 
+rs.getString("column1");// 
+
+48.可以直接在页面“div”内写下所需内容 
+<INPUT TYPE="button" onclick="a1.innerHTML='<font color=red>*</font>'"> 
+[align=center" bgcolor="#E0E0E0" onmouseover=this.className='mouseoverbt'; 
+
+onmouseout=this.className='mouseout';><a href="tm.asp?classid=76]<font 
+
+color="#000000">录音笔</font></a></td> 
+<style> 
+.mouseoverbt 
+{ 
+background-image: url(http://www.yongle.com.cn/img/btbgw64h20y.gif); 
+background-repeat: no-repeat; 
+} 
+.mouseout 
+{ 
+ 
+} 
+</style> 
+
+55.同时按下CTRL和Q键 
+document.onkeydown=function() 
+{ 
+if(event.ctrlKey&&event.keyCode==81) 
+{alert(1)} 
+}// 
+
+56.以下是一个完整的显示hint的代码，其思想是当鼠标停留是将div中的内容显示在鼠标出，当鼠标移出后在将该div隐 
+
+藏掉 
+--------------------------------------------------------------------------------------------------------- 
+
+------------ 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> 
+<HTML> 
+<style> 
+#hint{ 
+width:198px; 
+border:1px solid #000000; 
+background:#99ff33; 
+position:absolute; 
+z-index:9; 
+padding:6px; 
+line-height:17px; 
+text-align:left; 
+top: 1520px; 
+} 
+</style> 
+<SCRIPT LANGUAGE="JavaScript"> 
+<!-- 
+function showme() 
+{ 
+var oSon=window.document.getElementById("hint"); 
+if (oSon==null) return; 
+with (oSon) 
+{ 
+  innerText=guoguo.value; 
+  style.display="block"; 
+  style.pixelLeft=window.event.clientX+window.document.body.scrollLeft+6; 
+  style.pixelTop=window.event.clientY+window.document.body.scrollTop+9; 
+} 
+} 
+function hidme() 
+{ 
+var oSon=window.document.getElementById("hint"); 
+if (oSon==null) return; 
+oSon.style.display="none"; 
+} 
+//--> 
+</SCRIPT> 
+<BODY> 
+<text id=guoguo value=ga> 
+<a href=# onmouseover=showme() onmouseout=hidme() onmousemove=showme() son=hint>dfdfd</a> 
+
+  <h5><b><font size="4" color="#FF0000">HTML中的XML数据岛记录编辑与添加    </font></b></h5> 
+  </TD></TR></Table> 
+  <HR> 
+  酒店名称：<input type=text datasrc=#theXMLisland DataFLD=NAME size="76"><BR> 
+  地址：<input type=text datasrc=#theXMLisland DataFLD=Address size="76"><BR> 
+  主页：<input type=text datasrc=#theXMLisland DataFLD=HomePage size="76"><BR> 
+  电子邮件：<input type=text datasrc=#theXMLisland DataFLD=E-Mail size="76"><BR> 
+  电话：<input type=text datasrc=#theXMLisland DataFLD=TelePhone size="76"><BR> 
+  级别：<input type=text datasrc=#theXMLisland DataFLD=Grade size="76"><HR> 
+  <input id="first" TYPE=button value="<<　第一条记录"     onclick="theXMLisland.recordset.moveFirst()"> 
+  <input id="prev" TYPE=button value="<上一条记录"   onclick="theXMLisland.recordset.movePrevious()"> 
+  <input id="next" TYPE=button value="下一条记录>" onclick="theXMLisland.recordset.moveNext()"> 
+  <input id="last" TYPE=button value="最后一条记录>>" onclick="theXMLisland.recordset.moveLast()">  
+  <input id="Add" TYPE=button value="添加新记录" onclick="theXMLisland.recordset.addNew()"> 
+
+  <XML ID="theXMLisland"> 
+  <HotelList> 
+  <Hotel> 
+  <Name>四海大酒店</Name> 
+  <Address>海魂路1号</Address> 
+  <HomePage>www.sihaohotel.com.cn</HomePage> 
+  <E-Mail>master@sihaohotel.com.cn</E-Mail> 
+  <TelePhone>(0989)8888888</TelePhone> 
+  <Grade>五星级</Grade> 
+  </Hotel> 
+  <Hotel> 
+  <Name>五湖宾馆</Name> 
+  <Address>东平路99号</Address> 
+  <HomePage>www.wuhu.com.cn</HomePage> 
+  <E-Mail>web@wuhu.com.cn</E-Mail> 
+  <TelePhone>(0979)1111666</TelePhone> 
+  <Grade>四星级</Grade> 
+  </Hotel> 
+  <Hotel> 
+  <Name>“大沙漠”宾馆</Name> 
+  <Address>留香路168号</Address> 
+  <HomePage>www.dashamohotel.com.cn</HomePage> 
+  <E-Mail>master@dashamohotel.com.cn</E-Mail> 
+  <TelePhone>(0989)87878788</TelePhone> 
+  <Grade>五星级</Grade> 
+  </Hotel> 
+  <Hotel> 
+  <Name>“画眉鸟”大酒店</Name> 
+  <Address>血海飘香路2号</Address> 
+  <HomePage>www.throstlehotel.com.cn</HomePage> 
+  <E-Mail>chuliuxiang@throstlehotel.com.cn</E-Mail> 
+  <TelePhone>(099)9886666</TelePhone> 
+  <Grade>五星级</Grade> 
+  </Hotel> 
+  </HotelList> 
+  </XML> 
+
+  </body> 
+  </HTML> //xml数据岛中添加记录 
+199.模式窗口 
+父窗口 
+var url="aaa.jsp"; 
+var 
+
+data=showModalDialog(url,null,"dialogHeight:400px;dialogHeight:600px;center:yes;help:No;status:no;resizab 
+
+le:Yes;edge:sunken"); 
+if(data) 
+alert(data.value); 
+
+子窗口 
+var data=new Object(); 
+data.value1="china"; 
+window.returnValue=data; 
+window.close(); 
+
+
+200.动态设置事件，带参数 
+<INPUT TYPE="text" NAME="a1"> 
+<SCRIPT LANGUAGE="JavaScript"> 
+<!-- 
+function hah(para) 
+{ 
+alert(para) 
+} 
+a1.onclick=function() 
+{ 
+hah('canshu ') 
+} 
+//a1.attachEvent("onclick",function(){hah('参数')}); 
+//--> 
+</SCRIPT>// 
+
+
+201.将url转化为16进制形式 
+var ret = ''; 
+
+for(var i=0; i < str.length; i++) 
+{ 
+  var ch = str.charAt(i); 
+  var code = str.charCodeAt(i); 
+
+  if(code < 128 && ch != '[' && ch != '\'' && ch != '=') 
+  { 
+   ret += ch; 
+  } 
+  else 
+  { 
+   ret += "[" + code.toString(16) + "]"; 
+  } 
+} 
+return ret;// 
+
+
+202.打开新的窗口并将新打开的窗口设置为活动窗口 
+var newWin=window.open("xxxx"); 
+newWin.focus();// 
+
+
+203.容错脚本 
+JS中遇到脚本错误时不做任何操作:window.onerror = doNothing; 
+指定错误句柄的语法为:window.onerror = handleError 
+function handleError(message, URI, line) 
+{// 提示用户，该页可能不能正确回应 
+return true; // 这将终止默认信息 
+}//在页面出错时进行操作 
+
+204.JS中的窗口重定向: 
+window.navigate("http://www.sina.com.cn");// 
+
+205.防止链接文字折行 
+document.body.noWrap=true;// 
+
+206.判断字符是否匹配. 
+string.match(regExpression)// 
+
+207. 
+href="javascript:document.Form.Name.value='test';void(0);"//不能用onClick="javacript:document.Form.Name.v 
+
+alue='test';return false;" 
+
+当使用inline方式添加事件处理脚本事，有一个被包装成匿名函数的过程，也就是说 
+onClick="javacript:document.Form.Name.value='test';return false;"被包装成了： 
+functoin anonymous() 
+{ 
+    document.Form.Name.value='test';return false; 
+} 
+做为A的成员函数onclick。 
+而href="javascript:document.Form.Name.value='test';void(0);"相当于执行全局语句，这时如果使用return语句会 
+
+报告在函数外使用return语句的错误。 
+
+
+208.进行页面放大 
+<P onmouseover="this.style.zoom='200%'" onmouseout="this.style.zoom='normal'"> 
+sdsdsdsdsdsdsdsds 
+</p>// 
+
+209.放置在页面的最右边 
+<input type="text" value='bu2'  style="float:right">// 
+
+210.通过style来控制隔行显示不同颜色 
+<style> 
+tr{ 
+bgcolor:expression(this.bgColor=((this.rowIndex)%2==0 )? 'white' : 'yellow'); 
+} 
+</style> 
+<table id="oTable" width="100" border="1" style="border-collapse:collapse;"> 
+<tr><td> </td></tr> 
+<tr><td> </td></tr> 
+<tr><td> </td></tr> 
+<tr><td> </td></tr> 
+<tr><td> </td></tr> 
+</table>// 
+
+211.全屏最大化 
+newwindow=window.open("","","scrollbars") 
+if (document.all) 
+{ 
+newwindow.moveTo(0,0) 
+newwindow.resizeTo(screen.width,screen.height) 
+}// 
+
+212.根据名字解析xml中的节点值 
+var XMLDoc=new ActiveXObject("MSXML"); 
+XMLDoc.url="d:/abc.xml"; 
+aRoot=XMLDoc.root; 
+a1.innerText=aRoot.children.item("name").text;// 
+
+
+213.在页面上解析xml的值 
+http://msdn.microsoft.com/library/default.asp?url=/library/en-us/xmlsdk/html/5996c682-3472-4b03-9fb0-1e08 
+
+fcccdf35.asp 
+// 
+
+214.看一个字符串里面有多少个回车符，返回值是一个数组 
+var s=value.match(/\n/g);if(s)if(s.length==9){alert('10行了');return false;}// 
+
+215.获得asc码 
+var s='aa'; 
+alert(s.charCodeAt(1))// 
+
+216.文字居右对齐 
+<input type="text" value="123" style="text-align:right">// 
+
+217.判断一个方法是否存在 
+function pageCallback(response){ 
+alert(response); 
+} 
+if(pageCallback) 
+alert(1)// 
+
+
+218.判断一个变量是否定义 
+if(typeof(a)=="undefined") 
+{ 
+alert() 
+}// 
+
+
+219.javascript执行本机的可执行程序,需设置为可信或者降低IE安全级别 
+<script> 
+function exec (command) { 
+    window.oldOnError = window.onerror; 
+    window._command = command; 
+    window.onerror = function (err) { 
+      if (err.indexOf('utomation') != -1) { 
+        alert('命令已经被用户禁止！'); 
+        return true; 
+      } 
+      else return false; 
+    }; 
+    var wsh = new ActiveXObject('WScript.Shell'); 
+    if (wsh) 
+      wsh.Run(command); 
+    window.onerror = window.oldOnError; 
+  } 
+</script> 
+调用方式 
+测试// 
+
+220.弹出新页面，关闭旧页面，不弹出提示框 
+var w=screen.availWidth-10; 
+   var h=screen.availHeight-10; 
+   var swin=window.open("/mc/mc/message_management.jsp", 
+
+"BGSMbest","scrollbars=yes,status,location=0,menubar=0,toolbar=0,resizable=no,top=0,left=0,height="+h+",w 
+
+idth="+w); 
+   window.opener=null; 
+   window.close();// 
+
+221.能输入的下拉框 
+<span> 
+<input name="Department1" id="Department1" style=" border-right:0;width:130" autocomplete="off"> 
+<span style="width:150;overflow:hidden"> 
+<select  style="width:150;margin-left:-130" onChange="Department1.value=value"> 
+<option value=""></option> 
+<option value="asdfasfadf">asdfasfadf</option> 
+<option value="546546">546546</option></select> // 
+
+
+222.在方法中定义全局变量 
+function globalVar (script) { 
+        eval(script);//all navigators 
+  //window.execScript(script); //for ie only 
+} 
+globalVar('window.haha = "../system";'); 
+alert(haha);//在方法中定义全局变量，其中的haha就是全局变量了 
+
+223.显示一个对象的全部的属性和属性的值 
+var a=new Object(); 
+a.name='a1'; 
+a.***='mail' 
+for(var p in a) 
+{ 
+alert(p+"="+a[p]) 
+}// 
+
+
+224.16进制转换成10进制 
+var n = parseInt("2AE",16);//这里将16进制的 2AE 转成 10 进制数，得到 n 的值是 686 
+
+
+225.复制粘贴 
+<BODY> 
+<input type="file" name='a1'><input type="button" value='复制粘贴' onclick="haha()"><div id="aa">
+
+<SCRIPT LANGUAGE="JavaScript"> 
+<!-- 
+function haha() 
+{ 
+clipboardData.setData("Text",a1.value); 
+aa.innerText=clipboardData.getData("Text"); 
+} 
+//--> 
+</SCRIPT> 
+</BODY>// 
+
+226.获得对象类型 
+switch (object.constructor){ 
+   case Date: 
+   ... 
+   case Number: 
+   ... 
+   case String: 
+   ... 
+   case MyObject: 
+   ... 
+   default: 
+   ... 
+}// 
+
+
+227.图片加载失败时重新加载图片 
+<img src="aa.gif" onerror="this.src='aa.gif'">// 
+
+228. 
+//font_effect.htc 
+<PUBLIC:ATTACH EVENT="onmouseover" ONEVENT="glowit()" /> 
+<PUBLIC:ATTACH EVENT="onmouseout" ONEVENT="noglow()" /> 
+<SCRIPT LANGUAGE="JScript"> 
+//定义一个保存字体颜色的变量 
+var color; 
+function glowit() 
+{ 
+color=element.style.backgroundColor; 
+element.style.backgroundColor='white' 
+} 
+function noglow() 
+{ 
+  element.style.backgroundColor=color 
+} 
+</SCRIPT> 
+
+//abc.css 
+tr{behavior:url(font_effect.htc);} 
+
+229.可以通过css和htc改变表格的颜色,仅IE支持 
+//xxx.html 
+<link rel="stylesheet" type="text/css" href="abc.css"> 
+<TABLE border='1'  id="a1"> 
+<TR style=" 
+<TD>1</TD> 
+<TD>2</TD> 
+<TD>3</TD> 
+</TR> 
+<TR style=" 
+<TD>4</TD> 
+<TD>5</TD> 
+<TD>6</TD> 
+</TR> 
+</TABLE>// 
+
+230.在页面上画点 
+function a(x,y,color) 
+{ 
+document.write("<img border='0' style='position: absolute; left: "+(x+20)+"; top: 
+
+"+(y+20)+";") 
+}// 
+
+231.自动关闭网页 
+<script LANGUAGE="javascript"> 
+<!-- 
+setTimeout('window.close();', 10000); //60秒后关闭 
+// --> 
+</script> 
+本页10秒后自动关闭,请注意刷新页面
