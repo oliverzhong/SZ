@@ -1,0 +1,58 @@
+1. 创建一个嵌套的过滤器
+.filter(":not(:has(.selected))") //去掉所有不包含class为.selected的元素
+2. 重用你的元素查询
+var allItems = $("div.item"); var keepList = $("div#container1 div.item"); <div>class names: $(formToLookAt + " input:checked").each(function() { keepListkeepList = keepList.filter("." + $(this).attr("name")); }); </div>
+3. 使用has()来判断一个元素是否包含特定的class或者元素
+//jQuery 1.4.* includes support for the has method. This method will find //if a an element contains a certain other element class or whatever it is //you are looking for and do anything you want to them. $("input").has(".email").addClass("email_icon");
+4. 使用jQuery切换样式
+//Look for the media-type you wish to switch then set the href to your new style sheet $('link[media='screen']').attr('href', 'Alternative.css');
+5. 限制选择的区域
+//Where possible, pre-fix your class names with a tag name //so that jQuery doesn't have to spend more time searching //for the element you're after. Also remember that anything //you can do to be more specific about where the element is //on your page will cut down on execution/search times var in_stock = $('#shopping_cart_items input.is_in_stock'); <ul id="shopping_cart_items"> <li> <input value="Item-X" name="item" type="radio"> Item X</li> <li> <input value="Item-Y" name="item" type="radio"> Item Y</li> <li> <input value="Item-Z" name="item" type="radio"> Item Z</li> </ul>
+6. 如何正确使用ToggleClass
+//Toggle class allows you to add or remove a class //from an element depending on the presence of that //class. Where some developers would use: a.hasClass('blueButton') ? a.removeClass('blueButton') : a.addClass('blueButton'); //toggleClass allows you to easily do this using a.toggleClass('blueButton');
+7. 设置IE指定的功能
+if ($.browser.msie) { // Internet Explorer is a sadist. }
+8. 使用jQuery来替换一个元素
+$('#thatdiv').replaceWith('fnuh');
+9. 验证一个元素是否为空
+if ($('#keks').html()) { //Nothing found ;}
+10. 在无序的set中查找一个元素的索引
+$("ul > li").click(function () { var index = $(this).prevAll().length; });
+11. 绑定一个函数到一个事件
+$('#foo').bind('click', function() { alert('User clicked on "foo."'); });
+12. 添加HTML到一个元素
+$('#lal').append('sometext');
+13. 创建元素时使用对象来定义属性
+var e = $("", { href: "#", class: "a-class another-class", title: "..." });
+14. 使用过滤器过滤多属性
+//This precision-based approached can be useful when you use //lots of similar input elements which have different types var elements = $('#someid input[type=sometype][value=somevalue]').get();
+15. 使用jQuery预加载图片
+jQuery.preloadImages = function() { for(var i = 0; i').attr('src', arguments[i]); } }; // Usage $.preloadImages('image1.gif', '/path/to/image2.png', 'some/image3.jpg');
+16. 设置任何匹配一个选择器的事件处理程序
+$('button.someClass').live('click', someFunction); //Note that in jQuery 1.4.2, the delegate and undelegate options have been //introduced to replace live as they offer better support for context //For example, in terms of a table where before you would use.. // .live() $("table").each(function(){ $("td", this).live("hover", function(){ $(this).toggleClass("hover"); }); }); //Now use.. $("table").delegate("td", "hover", function(){ $(this).toggleClass("hover"); });17. 找到被选择到的选项(option)元素
+$('#someElement').find('option:selected');
+18. 隐藏包含特定值的元素
+$("p.value:contains('thetextvalue')").hide();
+19. 自动的滚动到页面特定区域
+jQuery.fn.autoscroll = function(selector) { $('html,body').animate( {scrollTop: $(selector).offset().top}, 500 ); } //Then to scroll to the class/area you wish to get to like this: $('.area_name').autoscroll();
+20. 检测各种浏览器
+Detect Safari (if( $.browser.safari)), Detect IE6 and over (if ($.browser.msie &amp;&amp; $.browser.version &gt; 6 )), Detect IE6 and below (if ($.browser.msie &amp;&amp; $.browser.version &lt;= 6 )), Detect FireFox 2 and above (if ($.browser.mozilla &amp;&amp; $.browser.version &gt;= '1.8' ))21. 替换字符串中的单词
+var el = $('#id'); el.html(el.html().replace(/word/ig, ''));
+22. 关闭右键的菜单
+$(document).bind('contextmenu',function(e){ return false; });
+23. 定义一个定制的选择器
+$.expr[':'].mycustomselector = function(element, index, meta, stack){ // element- is a DOM element // index - the current loop index in stack // meta - meta data about your selector // stack - stack of all elements to loop // Return true to include current element // Return false to explude current element }; // Custom Selector usage: $('.someClasses:test').doSomething();
+24. 判断一个元素是否存在
+if ($('#someDiv').length) {//hooray!!! it exists...}
+25. 使用jQuery判断鼠标的左右键点击
+$("#someelement").live('click', function(e) { if( (!$.browser.msie &amp;&amp; e.button == 0) || ($.browser.msie &amp;&amp; e.button == 1) ) { alert("Left Mouse Button Clicked"); } else if(e.button == 2) alert("Right Mouse Button Clicked"); });
+26. 显示或者删除输入框的缺省值
+//This snippet will show you how to keep a default value //in a text input field for when a user hasn't entered in //a value to replace it swap_val = []; $(".swap").each(function(i){ swap_val[i] = $(this).val(); $(this).focusin(function(){ if ($(this).val() == swap_val[i]) { $(this).val(""); } }).focusout(function(){ if ($.trim($(this).val()) == "") { $(this).val(swap_val[i]); } }); }); <INPUT value="Enter Username here.." type=text>
+27. 指定时间后自动隐藏或者关闭元素(1.4支持）
+//Here's how we used to do it in 1.3.2 using setTimeout setTimeout(function() { $('.mydiv').hide('blind', {}, 500) }, 5000); //And here's how you can do it with 1.4 using the delay() feature (this is a lot like sleep) $(".mydiv").delay(5000).hide('blind', {}, 500);
+28. 动态创建元素到DOM
+var newgbin1Div = $(''); newgbin1Div.attr('id','gbin1.com').appendTo('body');
+29. 限制textarea的字符数量
+jQuery.fn.maxLength = function(max){ this.each(function(){ var type = this.tagName.toLowerCase(); var inputType = this.type? this.type.toLowerCase() : null; if(type == "input" &amp;&amp; inputType == "text" || inputType == "password"){ //Apply the standard maxLength this.maxLength = max; } else if(type == "textarea"){ this.onkeypress = function(e){ var ob = e || event; var keyCode = ob.keyCode; var hasSelection = document.selection? document.selection.createRange().text.length &gt; 0 : this.selectionStart != this.selectionEnd; return !(this.value.length &gt;= max &amp;&amp; (keyCode &gt; 50 || keyCode == 32 || keyCode == 0 || keyCode == 13) &amp;&amp; !ob.ctrlKey &amp;&amp; !ob.altKey &amp;&amp; !hasSelection); }; this.onkeyup = function(){ if(this.value.length &gt; max){ this.value = this.value.substring(0,max); } }; } }); }; //Usage: $('#gbin1textarea').maxLength(500);
+30. 为函数创建一个基本测试用例
+//Separate tests into modules. module("Module B"); test("some other gbin1.com test", function() { //Specify how many assertions are expected to run within a test. expect(2); //A comparison assertion, equivalent to JUnit's assertEquals. equals( true, false, "failing test" ); equals( true, true, "passing test" ); });
