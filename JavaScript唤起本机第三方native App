@@ -1,0 +1,12 @@
+在手机浏览器里要唤起本机第三方App，不能直接设置超链接的href="yourAppName://article/:id"的方式，因为如果没有安装该app则会弹窗报错，体验不友好，可通过iframe的方式绕过验证，如果没安装，则点击后没有弹窗报错等任何反应，如果安装过并且设置过该scheme之后则会顺利打开：
+var a = document.createElement("iframe");
+a.width = 0;
+a.height = 0;
+a.src = 'yourAppName://articles/:id';
+document.body.appendChild(a);
+
+setTimeout(function(){
+  document.body.removeChild(a);
+}, 0);
+唯一悲催的是，微信好像是屏蔽了唤起本机第三方app，无论怎么设置都不能在微信里直接唤起本机第三方app（除了他们自己家的），只能诱导用户点击分享按钮在浏览器打开后重试。
+（完）
