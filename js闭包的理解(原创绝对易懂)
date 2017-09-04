@@ -1,0 +1,119 @@
+花了三天时间，终于弄清楚闭包的各种写法和注意的事项，以及以前写，经常出错的地方，特此做一个总结，虽然不够专业，但是对于那些初学者来说，绝对对闭包的理解事半功倍。
+案例一：function aa(){
+var b=10;
+return function cc(){                        
+b++;
+alert(b);
+}
+}
+aa()();
+ 
+这个函数调用时，aa()(),有两个括号，第一个是调用aa函数，第二个是执行cc函数。
+ 
+function test(){
+      return function(){alert("不做死就不会死！")}
+}
+test()();
+第一个括号 执行test函数  返回子函数，第二个括号执行test返回的函数
+为什么后面还要加一个括号，以前我直接test()这样调用，但是没有弹出结果，也没有报错。
+后来在网友的提示下：再加一个括号，就可以了，注意直接test() 它返回的是子函数的内容，并没有调用子函数，不信你可以输出一下：
+alert(test()) ,结果：
+[图片]
+ ，再加上括号，就调用了：
+[图片]
+如果觉得很难理解，你可以把它想象返回的不是一个函数，而是一个字符串，
+：比如：function test(){
+  return  alert("a+b");
+     ｝
+test();  结果：
+[图片]
+还有子函数里为什么要写return,？这是因为要在父函数外部调用 。看下面这段代码;
+ function a(){
+      var i=0;
+      function b(){
+        alert(++i);
+      }
+      return b; //返回b函数本身内容，不能写成return b()这样直接执行了
+    }
+    var c = a();
+    c();
+
+  这段代码有两个特点：
+  1、函数b嵌套在函数a内部；
+  2、函数a返回函数b。
+
+引用关系如图：
+
+这样在执行完var c=a()后，变量c实际上是指向了函数b，再执行c()后就会弹出一个窗口显示i的值(第一次为1)。这段代码其实就创建了一个闭包，为什么？因为函数a外的变量c引用了函数a内的函数b，就是说：
+
+  当函数a的内部函数b被函数a外的一个变量引用的时候，就创建了一个闭包。
+如果不想用两个括号调用，有两种方式。一是定义一个变量接收子函数返回的值，再执行变量所在的函数，二是子函数直接在里面就调用。
+还是拿案例一来说：
+可以改成第一种方式。
+ function aa(){
+var b=10;
+return function cc(){                        
+b++;
+alert(b);
+}
+}
+var dd=aa();
+dd();  
+ 
+二： function aa(){
+var b=10;
+(function cc(){                        
+b++;
+alert(b);
+})();
+}
+alert(aa());
+结果：11,undefined  
+ 
+为什么第二个会弹出undefined,因为：如果一个函数没有返回值，则会留下一个undefined
+注意如果内部函数在里面执行，那么前面就不要写return, 如：return (function cc(){ b++; alert(b); })();  此时return在里面没有意义，因为没有返回值 ，就不要写return，就像java 不会写return void一样。函数运行就是个闭包，如果里面的子函数不在里面执行，就要加上return ，然后在父函数外面调用返回的子函数。
+ 
+ 
+下面这个问题困扰我好久，后来在网友的提示下，才弄懂。点击第个li，得到其索引。
+问题：里面子函数并没有执行，为什么也能弹出结果？
+代码如下：
+window.onload=function(){
+var li=document.getElementsByTagName("li");
+for(var i=0;i<li.length;i++){
+     li[i].onclick=(function(n){
+ return  function(){
+                alert(n);    
+ } 
+  })(i);
+}
+}
+ <ul>
+   <li>1</li>
+   <li>2</li>
+   <li>3</li>
+   <li>4</li>
+   <li>5</li>
+ </ul>
+像 上面那些写法都是要么在里面加上括号，直接调用，要么在父函数外面执行。而这里却没有？
+解释：上面的内部的函数被绑定到事件上了
+父函数运行，然后把里面的函数返回了，然后返回给绑定的事件上
+这时代码就变成这样：
+ li[i].onclick= function(){
+                alert(n);    
+ }
+这是我们常用的写法，很明显，这样就运行了子函数，就会弹出结果。
+ 
+这个闭包还有第二种写法：
+window.onload=function(){
+var li=document.getElementsByTagName("li");
+for(var i=0;i<li.length;i++){
+     (function(n){
+ li[i].onclick=function(){
+ alert(n);
+}
+ 
+ })(i);
+}
+}
+因为要用到循环里的变量，所以用一个闭包把下面的代码包起来，并传给一个形参n,调用时传实参i,这个i就是for循环里的i。
+ 
