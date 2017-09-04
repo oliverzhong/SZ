@@ -1,0 +1,2 @@
+1、发现原生js在z-index 无法获取值，(写成导入式,外联式，内联式)都无法获取其值。当写成行内样式的时候，通过obj.style.zIndex可以获取到值
+2、让a标签不出现虚线框  FF 下谈价样式 a {outline:none;}   IE下则使用 hideFocus="true"  默认为TRUE 可简写成hideFocus
